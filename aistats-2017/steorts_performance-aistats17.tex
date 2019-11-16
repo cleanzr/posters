@@ -1,0 +1,843 @@
+%\documentclass[landscape,a0b,final,a4resizeable]{a0poster}
+%\documentclass[portrait,a0b,final]{a0poster}
+\documentclass[portrait,a0,final]{a0poster}
+%\documentclass[orientation=landscape,size=a0,scale=1,final]{a0poster}
+%\documentclass[final]{beamer}
+%\mode<presentation>
+%{
+%\usepackage[orientation=landscape,size=a0,scale=1.4,debug]{beamerposter}
+%\documentclass[portrait,a0b,final,a4resizeable]{a0poster}
+%\documentclass[portrait,a0b,final]{a0poster}
+%%% Option "a4resizeable" makes it possible ot resize the
+%   poster by the command: psresize -pa4 poster.ps poster-a4.ps
+%   For final printing, please remove option "a4resizeable" !!
+
+%\usepackage[ruled,lined]{algorithm2e}
+%\def\algorithmautorefname{Algorithm}
+%\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{endif}
+\input{symbols-v04}
+\input{simbologia}
+
+\usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+%\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%\newcommand\iid{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny
+%          \textrm{iid}}}}{\sim}}}
+\newcommand{\clusters}{\bm{\kappa}}
+\newcommand{\cluster}[1]{\kappa_{#1}}
+\newcommand{\sizes}{\bm{\mu}}
+\newcommand{\size}[1]{\mu_{#1}}
+\newcommand{\edist}{\bm{\gamma}}
+\newcommand{\shape}{\eta}
+\newcommand{\rate}{s}
+\newcommand{\betaA}{u}
+\newcommand{\betaB}{v}
+
+
+
+% Probability distributions
+%\DeclareMathOperator*{\Exp}{Exp}
+%\DeclareMathOperator*{\TExp}{TExp}
+%\DeclareMathOperator*{\Bernoulli}{Bernoulli}
+%\DeclareMathOperator*{\Beta}{Beta}
+%\DeclareMathOperator*{\Ga}{Gamma}
+%\DeclareMathOperator*{\TGamma}{TGamma}
+%\DeclareMathOperator*{\Poisson}{Poisson}
+%\DeclareMathOperator*{\Binomial}{Binomial}
+%\DeclareMathOperator*{\NormalGamma}{NormalGamma}
+%\DeclareMathOperator*{\InvGamma}{InvGamma}
+%\DeclareMathOperator*{\Cauchy}{Cauchy}
+%\DeclareMathOperator*{\Uniform}{Uniform}
+%\DeclareMathOperator*{\Gumbel}{Gumbel}
+%\DeclareMathOperator*{\Pareto}{Pareto}
+%\DeclareMathOperator*{\Mono}{Mono}
+%\DeclareMathOperator*{\Geometric}{Geometric}
+%\DeclareMathOperator*{\Dirichlet}{Dirichlet}
+%\DeclareMathOperator*{\Categorical}{Categorical}
+%\DeclareMathOperator*{\Multinomial}{Multinomial}
+%\DeclareMathOperator*{\DirichletMultinomial}{DirichletMultinomial}
+
+% Math operators
+%\DeclareMathOperator*{\argmin}{arg\,min}
+%\DeclareMathOperator*{\argmax}{arg\,max}
+%\DeclareMathOperator*{\Cov}{Cov}
+%\DeclareMathOperator*{\diag}{diag}
+%\DeclareMathOperator*{\median}{median}
+%\DeclareMathOperator*{\Vol}{Vol}
+%\DeclareMathOperator*{\PCM}{PCM}
+
+% Math characters
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\Z}{\mathbb{Z}}
+%\newcommand{\E}{\mathbb{E}}
+%\renewcommand{\Pr}{\mathbb{P}}
+%\newcommand{\I}{\mathds{1}}
+%\newcommand{\V}{\mathbb{V}}
+%
+%\newcommand{\A}{\mathcal{A}}
+%\newcommand{\C}{\mathcal{C}}
+%\newcommand{\D}{\mathcal{D}}
+%\newcommand{\Hcal}{\mathcal{H}}
+%\newcommand{\M}{\mathcal{M}}
+%\newcommand{\N}{\mathcal{N}}
+%\newcommand{\X}{\mathcal{X}}
+%\newcommand{\Zcal}{\mathcal{Z}}
+%\renewcommand{\P}{\mathcal{P}}
+
+%\newcommand{\T}{\mathtt{T}}
+%\renewcommand{\emptyset}{\varnothing}
+%
+\newcommand{\g}{\,|\,}
+
+
+
+\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage{tkz-berge}
+%\usetikzlibrary{fit,shapes}
+
+\usepackage{calc}
+%%
+%% The tikz package is used for doing the actual drawing.
+\usepackage{tikz}
+
+\usepackage{caption}
+
+%%
+%% In order to be able to put arrowheads in the middle of directed edges, we need an extra library.
+\usetikzlibrary{decorations.markings}
+%%
+%% The next line says how the "vertex" style of nodes should look: drawn as small circles.
+\tikzstyle{vertex}=[circle, draw, inner sep=0pt, minimum size=6pt]
+%%
+%% Next, we make a \vertex command as a shorthand in place of \node[vertex} to get that style.
+\newcommand{\vertex}{\node[vertex]}
+%%
+%% Finally, we declare a "counter", which is what LaTeX calls an integer variable, for use in
+%% the calculations of angles for evenly spacing vertices in circular arrangements.
+\newcounter{Angle}
+
+
+
+\renewcommand{\baselinestretch}{1.2}
+%\usepackage[usenames,dvipsnames]{xcolor}
+%\thispagestyle{empty}
+
+
+\usepackage{epsfig,bm}
+\usepackage{multicol}
+\usepackage{pstricks,pst-grad}
+\usepackage{amssymb,amsmath,amstext,graphicx,amsopn,amsfonts,bm}
+\newcommand{\draw}{\stackrel{\text{draw}}{\sim}}
+
+ 
+\usepackage[sort&compress]{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+%\newtheorem{theorem}{Theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of some variables and colors
+%\renewcommand{\rho}{\varrho}
+%\renewcommand{\phi}{\varphi}
+\setlength{\columnsep}{3cm}
+\setlength{\columnseprule}{2mm}
+\setlength{\parindent}{0.0cm}
+
+\newcommand{\indep}{\stackrel{\text{indep}}{\sim}}
+\newcommand{\cas}{\buildrel \textrm{\scriptsize a.s.} \over
+  \longrightarrow}
+%\newcommand{\cd}{\buildrel d \over \longrightarrow}
+%\newcommand{\cp}{\buildrel P \over \longrightarrow}
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\hatbb}{\boldsymbol{\hat{b}}}
+%\newcommand{\hatbB}{\boldsymbol{\hat{B}}}
+%\newcommand{\hatbd}{\boldsymbol{\hat{d}}}
+%\newcommand{\commentt}[1]{}
+%\newcommand{\myvfil}[1]{\vskip 0pt plus #1fill}
+% \renewcommand{\upsilon}{v}
+%\newcommand{\lik}{\ell_y(\theta)}
+%\newcommand{\likil}{\ell_y(\theta_i^{(l)})}
+%\newcommand{\hd}{\hfill$\diamondsuit$}
+%\newcommand{\aaa}{\epsilon}
+%\newcommand{\lt}{\left}
+%\newcommand{\rt}{\right}
+%\newcommand{\mbi}{\max_{1 \leq i \leq m} \bxi'\bb}
+%\newcommand{\bs}{B_{i*}}
+%\newcommand{\bi}{B_{i}}
+%\newcommand{\that}        {\mbox{$\hat{\boldsymbol{\theta}}$}}
+%\newcommand{\utheta}        {\mbox{$\boldsymbol{\theta}$}}
+%\newcommand{\thhj}{\hat{\theta}_j}
+%\newcommand{\thhij}{\hat{\theta}_{ij}}
+%\newcommand{\thiHB}{\hat{\theta}_i^{HB}}
+%\newcommand{\thih}{\hat{\theta}_i^H}
+%\newcommand{\thit}{\tilde{\theta}_i^H}
+
+
+%\newcommand{\tr}{\text{tr}}
+%\newcommand{\btt}{\boldsymbol{\theta}}
+%
+%\newcommand{\ttt}{\boldsymbol{t}}
+%\newcommand{\bhat}{\boldsymbol{\hat{\beta}}}
+%\newcommand{\thb}{\bar{\theta}}
+%\newcommand{\bx}{\boldsymbol{x}}
+%\newcommand{\bv}{\boldsymbol{v}}
+%\newcommand{\bu}{\boldsymbol{u}}
+%\newcommand{\ur}{\boldsymbol{r}}
+%\newcommand{\uphi}{\boldsymbol{\phi}}
+%\newcommand{\uone}{\boldsymbol{1}}
+%\newcommand{\ue}{\boldsymbol{e}}
+%\newcommand{\uc}{\boldsymbol{c}}
+%\newcommand{\bbi}{\boldsymbol{b}_i}
+%\newcommand{\uw}{\boldsymbol{w}}
+%\newcommand{\bz}{\boldsymbol{z}}
+%\newcommand{\be}{\boldsymbol{e}}
+%\newcommand{\by}{\boldsymbol{y}}
+%\newcommand{\utt}{\boldsymbol{t}}
+%\newcommand{\bzero}{\boldsymbol{0}}
+%\newcommand{\bl}{\boldsymbol{l}}
+%\newcommand{\util}{\boldsymbol{\tilde{u}}}
+%\newcommand{\btil}{\boldsymbol{\tilde{\beta}}}
+%\newcommand{\btils}{\boldsymbol{\tilde{\beta}_*}}
+%%\newcommand{\bm}{\boldsymbol{m}}
+%\newcommand{\btilf}{(X'V^{-1}X)^{-1}X'V^{-1}\that}
+%\newcommand{\btilfs}{(X'V_*^{-1}X)^{-1}X'V_*^{-1}\that}
+%\newcommand{\bxij}{\boldsymbol{x_{ij}}}
+%\newcommand{\bxj}{\boldsymbol{x}_j}
+%\newcommand{\bei}{\boldsymbol{e_{i}}}
+%\newcommand{\bej}{\boldsymbol{e_{j}}}
+%\newcommand{\bbary}{\boldsymbol{\bar{y}}}
+%\newcommand{\thet}{\boldsymbol{\theta}}
+%
+%
+%\newcommand{\bX}       {\mbox{$\boldsymbol{X}$}}
+%\newcommand{\lam}       {\mbox{$\boldsymbol{\Lambda}$}}
+%\newcommand{\lao}       {\mbox{$\lambda_{1i}$}}
+%\newcommand{\lat}       {\mbox{$\lambda_{2}$}}
+%\newcommand{\latt}       {\mbox{$\lambda_{3i}$}}
+%
+%
+%\newcommand{\vv}        {V^{-1}}
+%\newcommand{\vs}        {V^{-1}_*}
+%\newcommand{\sig}        {\Sigma}
+%\newcommand{\sm}        {\sqrt{m}}
+%\newcommand{\thi}        {\theta_i}
+%\newcommand{\thhi}        {\mbox{$\hat{\theta}_i$}}
+%\newcommand{\thhk}        {\mbox{$\hat{\theta}_k$}}
+%\newcommand{\thho}        {\mbox{$\hat{\theta}_1$}}
+%\newcommand{\thhm}        {\mbox{$\hat{\theta}_m$}}
+%\newcommand{\thj}        {\mbox{$\hat{\theta}_j$}}
+%\newcommand{\thij}        {\mbox{$\hat{\theta}_{ij}$}}
+%
+%\newcommand{\thk}        {\mbox{$\hat{\theta}_k$}}
+%\newcommand{\tij}       {\mbox{$\theta_{ij}$}}
+%\newcommand{\thbb}        {\mbox{$\hat{\theta}^B$}}
+%\newcommand{\thbi}        {\mbox{$\hat{\theta}_i^\text{B}$}}
+%\newcommand{\thbis}        {\mbox{$\hat{\theta}_{i*}^B$}}
+%\newcommand{\thebis}        {\mbox{$\hat{\theta}_{i*}^{\text{EB}}$}}
+%\newcommand{\thebjs}        {\mbox{$\hat{\theta}_{j*}^{EB}$}}
+%\newcommand{\thbj}        {\mbox{$\hat{\theta}_j^B$}}
+%\newcommand{\thbjs}        {\mbox{$\hat{\theta}_{j*}^B$}}
+%\newcommand{\thbk}        {\mbox{$\hat{\theta}_k^B$}}
+%\newcommand{\htijb}        {\mbox{$\hat{\theta}_{ij}^B$}}
+%\newcommand{\thebi}       {\mbox{$\hat{\theta}_i^{\text{EB}}$}}
+%\newcommand{\thebj}       {\mbox{$\hat{\theta}_j^{EB}$}}
+%\newcommand{\theblupi}    {\mbox{$\hat{\theta}_i^{\text{EBM1}}$}}
+%\newcommand{\theblupis}       {\mbox{$\hat{\theta}_{i*}^{\text{EBM1}}$}}
+%
+%\newcommand{\thbiw}       {\mbox{$\bar{\hat{\theta}}_{iw}^B$}}
+%\newcommand{\tbw}       {\mbox{$\bar{\theta}_{w}$}}
+%\newcommand{\thww}       {\mbox{$\bar{\hat{\theta}}_{w}$}}
+%\newcommand{\thw}       {\mbox{$\bar{\hat{\theta}}_{w}^B$}}
+%\newcommand{\tbiw}       {\mbox{$\bar{\theta}_{iw}$}}
+%\newcommand{\thbariw}     {\mbox{$\bar{\hat{\theta}}_{iw}^{B}$}}
+%\newcommand{\thbarw}     {\mbox{$\bar{\hat{\theta}}_{w}^{B}$}}
+%\newcommand{\thbarwb}     {\mbox{$\bar{\hat{\theta}}_w^{B}$}}
+%\newcommand{\thbarwbs}     {\mbox{$\bar{\hat{\theta}}_{w*}^{B}$}}
+%\newcommand{\thbarweb}     {\mbox{$\bar{\hat{\theta}}_w^{\text{EB}}$}}
+%\newcommand{\thbarwebs}     {\mbox{$\bar{\hat{\theta}}_{w*}^{EB}$}}
+%\newcommand{\se}     {\mbox{$\sigma_{ei}^2$}}
+%\newcommand{\su}     {\mbox{$\sigma_u^2$}}
+%\newcommand{\sbb}     {\mbox{$\sigma_b^2$}}
+%\newcommand{\sut}     {\mbox{$\tilde{\sigma}_u^2$}}
+%\newcommand{\suh}     {\mbox{$\hat{\sigma}_u^2$}}
+%\newcommand{\sus}     {\mbox{${\sigma}_u^{*2}$}}
+%\newcommand{\sust}     {\mbox{$\tilde{\sigma}_u^{*2}$}}
+%%\newcommand{\btil}     {\mbox{$(X'V^{-1}X)^{-1}X'V^{-1}\boldface{\theta}$}}
+%\newcommand{\hvis}     {\mbox{$\boldsymbol{x}_i'(X'V^{-1}_*X)^{-1}\boldsymbol{x}_i$}}
+%\newcommand{\hvi}     {\mbox{$\boldsymbol{x}_i'(X'V^{-1}X)^{-1}\boldsymbol{x}_i$}}
+%\newcommand{\hij}     {\mbox{$\boldsymbol{x}_i'(X'X)^{-1}\boldsymbol{x}_j$}}
+%\newcommand{\hvk}     {\mbox{$\boldsymbol{x}_k'(X'V^{-1}X)^{-1}\boldsymbol{x}_k$}}
+%\newcommand{\hj}     {\max_{1\leq j \leq m} h_j}
+%\newcommand{\hi}     {\max_{1\leq i \leq m} h_i}
+%\newcommand{\hk}     {\mbox{$\boldsymbol{x}_k'(X'X)^{-1}\boldsymbol{x}_k$}}
+%\newcommand{\hvik}     {\mbox{$\boldsymbol{x}_i'(X'V^{-1}X)^{-1}\boldsymbol{x}_k$}}
+%\newcommand{\hii}     {\mbox{$\boldsymbol{x}_i'(X'X)^{-1}\boldsymbol{x}_i$}}
+%%\newcommand{\bt}     {\mbox{$\tilde{\bm{\beta}}$}}
+%\newcommand{\ut}     {\mbox{$\tilde{\boldsymbol{u}}$}}
+%\newcommand{\uts}     {\mbox{$\tilde{\boldsymbol{u}}_*$}}
+%\newcommand{\ub}     {\mbox{${\boldsymbol{u}}$}}
+%\newcommand{\bb}     {\mbox{${\boldsymbol{\beta}}$}}
+%\newcommand{\li}     {\mbox{${\lambda_i}$}}
+%\newcommand{\lj}     {\mbox{${\lambda_j}$}}
+%\newcommand{\lk}     {\mbox{${\lambda_k}$}} 
+%\newcommand{\co}     {\text{Cov}}
+%\newcommand{\lp}     {\left(}
+%\newcommand{\rp}     {\right)}
+%\newcommand{\lb}     {\left\{}
+%\newcommand{\rb}     {\right\}}
+%%\newcommand{\g}     {\mbox{$X(X'V^{-1}X)^{-1}X'$}}
+%\newcommand{\bxi}{\boldsymbol{x}_i}
+%\newcommand{\bci}{\boldsymbol{c}_i}
+%\newcommand{\bgi}{\boldsymbol{g}_i}
+%\newcommand{\bxk}{\boldsymbol{x}_k}
+%\newcommand{\byi}{\boldsymbol{y}_i}
+%\newcommand{\bzi}{\boldsymbol{z}_i}
+%\newcommand{\bt}{\boldsymbol{\tilde{\beta}}}
+%\newcommand{\lai}     {\lambda_i}
+%\newcommand{\gai}     {\gamma_i}
+%
+%\newcommand{\cov}     {\text{Cov}}
+%
+%%%slides
+%\newcommand{\hti}       {\hat{\theta}_i} 
+%\newcommand{\hto}       {\hat{\theta}_1}
+%\newcommand{\htm}       {\hat{\theta}_m}  
+%\newcommand{\htbi}       {\hat{\theta}_i^B} 
+%\newcommand{\bhto}   	   {\hat{\boldsymbol{\theta}}^{(1)}}
+%\newcommand{\bhtr}   	   {\hat{\boldsymbol{\theta}}^{(r)}}
+%\newcommand{\bhtPB}   	   {\hat{\boldsymbol{\theta}}^{(PB)}}
+%\newcommand{\bhttwo}   	   {\hat{\boldsymbol{\theta}}^{(2)}}
+%
+%\newcommand{\bhtw}   	   	   {\bar{\hat{\theta}}_w}
+%
+%\newcommand{\bhtwb}   	   {\bar{\hat{\theta}}_w^B}
+%\newcommand{\bhtwbb}   	  {\bar{\hat{\bm{\theta}}}_w^B}
+%
+%%\newcommand{\bt}			{\bm{\theta}}
+%%\newcommand{\be}			{\bm{e}}
+%%\newcommand{\btt}			{\bm{t}}
+%\newcommand{\bW}			{\boldsymbol{W}}
+%\newcommand{\bO}			{\boldsymbol{\Omega}}
+%\newcommand{\br}			{\boldsymbol{r}}
+%
+%
+%\newcommand{\bbmo}   	  	{\hat{\boldsymbol{\theta}}^{BM1}}
+%\newcommand{\bht}   	  	{\hat{\thet}^B}
+%%\newcommand{\bbt}   	  	{\hat{\bt}}
+%\newcommand{\BM}   	  {\hat{\theta}^{BM1}}
+%\newcommand{\bmo}   	  {\hat{\theta}_1^{BM1}}
+%\newcommand{\bmi}   	  {\hat{\theta}_i^{BM1}}
+%\newcommand{\bmov}   	  {\hat{\bt}_1^{BM1}}
+%\newcommand{\bmm}   	  {\hat{\theta}_m^{BM1}}
+%\newcommand{\bhmbm}   	  {\hat{\theta}^{MBM}}
+%\newcommand{\bhmbmb}   	  {\hat{\boldsymbol{\theta}}^{MBM}}
+%\newcommand{\swtbm}   	  {\sum_{i=1}^m w_i\bmi}
+%\newcommand{\bmtwo}   	  {\hat{\theta}_i^{BM2}}
+%
+%\newcommand{\ma}     {\max_{1 \leq i \leq m}}
+%
+%%%
+%\newcommand{\sustt}     {\mbox{${\hat{\sigma}}_u^{*2}$}}
+%\newcommand{\thebs}     {\hat{\theta}_i^{\text{EB*}}}
+%\newcommand{\btheta}{\boldsymbol{\theta}}
+%\newcommand{\bthat}{\hat{\boldsymbol{\theta}}^B}
+%\newcommand{\bw}{\boldsymbol{w}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%               Background                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\background}[3]{
+  \newrgbcolor{cgradbegin}{#1}
+  \newrgbcolor{cgradend}{#2}
+  \psframe[fillstyle=gradient,gradend=cgradend,
+  gradbegin=cgradbegin,gradmidpoint=#3](0.,0.)(1.\textwidth,-1.\textheight)
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                Poster                        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{poster}{
+  \begin{center}
+  \begin{minipage}[c]{0.98\textwidth}
+}{
+  \end{minipage}
+  \end{center}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pcolumn                       %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pcolumn}[1]{
+  \begin{minipage}{#1\textwidth}
+  \begin{center}
+}{
+  \end{center}
+  \end{minipage}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pbox                          %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newrgbcolor{lcolor}{0. 0. 0.80}
+\newrgbcolor{gcolor1}{1. 1. 1.}
+\newrgbcolor{gcolor2}{.80 .80 1.}
+
+\newcommand{\pbox}[4]{
+\psshadowbox[#3]{
+\begin{minipage}[t][#2][t]{#1}
+#4
+\end{minipage}
+}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                myfig                         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \myfig - replacement for \figure
+% necessary, since in multicol-environment
+% \figure won't work
+
+\newcommand{\myfig}[3][0]{
+\begin{center}
+  \vspace{.25cm}
+  \includegraphics[width=#3\hsize,angle=#1]{#2}
+  \nobreak\medskip
+\end{center}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                mycaption                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mycaption - replacement for \caption
+% necessary, since in multicol-environment \figure and
+% therefore \caption won't work
+
+%\newcounter{figure}
+\newcommand{\mycaption}[1]{
+  \vspace{0.25cm}
+  \begin{quote}
+    {{\sc Figure} \arabic{figure}: #1}
+  \end{quote}
+  \vspace{0.25cm}
+  \stepcounter{figure}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Begin of Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\background{1. 1. 1.}{1. 1. 1.}{0.5}
+\vspace*{1.5cm}
+
+\newrgbcolor{lightblue}{0. 0. 0.80}
+\newrgbcolor{white}{1. 1. 1.}
+\newrgbcolor{whiteblue}{.80 .80 1.}
+
+
+\begin{poster}
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Header
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\begin{pcolumn}{0.98}
+\pbox{0.95\textwidth}{}{linewidth=2mm,framearc=0.3,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,
+gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+
+%%%% Unisiegel
+%\begin{minipage}[c][9cm][c]{0.1\textwidth}
+%  \begin{center}
+%      \includegraphics[width=10cm,angle=0]{SOE_logo.eps}
+%  \end{center}
+%\end{minipage}
+%%% Titel
+\begin{minipage}[c][7.2cm][c]{\textwidth}
+  \begin{center}
+    %{\sc \huge \bf Will the real Alan Gelfand Please Stand up: A Bayesian Nonparametric Method for Record Linkage 
+    {\sc \huge \bf Performance Bounds for Graphical Record Linkage
+}\\[10mm]
+%    {\sc \huge of Benchmarked Empirical Bayes Estimators\bf  }\\[10mm]
+    {\Large Rebecca C. Steorts,${}^{1}$ Matt Barnes${}^{2}$ and Willie Neiswanger${}^{2}$      \\ [7.5mm]
+Duke University${}^{1}$ and Carnegie Mellon University${}^{2}$ }
+  \end{center}
+\end{minipage}
+%%%% GK-Logo
+%\begin{minipage}[c][9cm][c]{0.1\textwidth}
+%  \begin{center}
+%    \reflectbox{\includegraphics[width=7cm,angle=0]{slug.eps}}
+%  \end{center}
+%\end{minipage}
+
+}
+\end{pcolumn}
+\end{center}
+
+
+\vspace*{1cm}
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Content
+%%%%%%%%%%%%%%%%%%%%%
+%%% Begin of Multicols-Enviroment
+\begin{multicols}{3}
+
+%%% Parametric Model
+\vspace{.75cm}
+\begin{center}
+  \pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,
+    gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+    \begin{center}
+      {\large \bf Record Linkage}
+    \end{center}
+  }
+\end{center}
+\vspace{.65cm}
+
+Record linkage (entity resolution or de-duplication) is the process of removing duplicate entities from large noisy 
+databases. 
+
+\begin{itemize}
+\item Three data sets have \textcolor{blue}{duplicated data} and require \textcolor{blue}{record linkage}. 
+
+%\item Entity resolution (record linkage or de-duplication) is the process of merging together databases to remove duplicate entities often in the absence of unique identifiers.
+
+%\item Common method for entity resolution: clustering data points into partitions. 
+
+\vspace*{.65cm}
+\begin{center}
+\includegraphics[width=0.15\textwidth]{figures/newEntity2}
+\end{center}
+
+\end{itemize}
+
+%\begin{center}
+%\includegraphics[width=0.25\textwidth]{figures/suchi}
+%%\includegraphics[width=0.5\textwidth]{donors_synthetic.eps}
+%\end{center}
+%\mycaption{How do we cope with duplicated medical records?}
+%
+%\begin{center}
+%\includegraphics[width=0.25\textwidth]{figures/asad}
+%%\includegraphics[width=0.5\textwidth]{donors_synthetic.eps}
+%\label{eqn:infinite}
+%\end{center}
+%\mycaption{How do we cope with duplicated deaths in the Syrian conflict?}
+%
+%\vspace{.75cm}
+%\begin{center}
+%  \pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,
+%    gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+%    \begin{center}
+%      {\large \bf Entity Resolution}
+%    \end{center}
+%  }
+%\end{center}
+%\vspace{.65cm}
+
+\vspace{.75cm}
+\begin{center}
+  \pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,
+    gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+    \begin{center}
+      {\large \bf Graphical Record Linkage Models}
+    \end{center}
+  }
+\end{center}
+\vspace{.65cm}
+
+\setcounter{figure}{1}
+\begin{center}
+\includegraphics[width=0.25\textwidth]{figures/recordLinkage_graphicalModel}
+\mycaption{Graphical representation of models in \cite{steorts14smered, steorts15entity}.}
+\end{center}
+
+\vspace{.75cm}
+\begin{center}
+  \pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,
+    gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+    \begin{center}
+      {\large \bf Kullback-Leibler (KL) divergence}
+    \end{center}
+  }
+\end{center}
+\vspace{.65cm}
+
+For any two distributions $P$ and $Q$, the maximum power for testing $P$ versus $Q$ is $\exp\{-n D_{\text{KL}}(P || Q)\}.$ 
+
+\begin{itemize}
+\item A low value of $D_{KL}$ means that we need many samples to distinguish $P$ from $Q.$
+
+\item How  does changing $\bY$ (latent entity) or $\lam$ (linkage structure) change the distribution of $\bX$ (observed records)? 
+
+\item We search for both meaningful upper and lower bounds. 
+%\item Moreover, we investigate how well can we recover $\bY$ (latent entity) and $\lam$ (linkage structure) from $\bX$ (data).
+
+\end{itemize}
+
+\vspace{.75cm}
+\begin{center}
+  \pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,
+    gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+    \begin{center}
+      {\large \bf Performance Bounds}
+    \end{center}
+  }
+\end{center}
+\vspace{.65cm}
+
+Assuming the conditions of \cite{steorts14smered, steorts15entity}, 
+let $$\mathcal{P} = \left\{f(X\mid \bY, \Lambda_{ij}, \bm{\theta}, \bm{\beta}): 
+ \forall \Lambda_{ij} \in \{ 1, \ldots, N \}.\right\}$$
+% Given $P, Q \in \mathcal{P}$, 
+
+\begin{itemize}
+\item  $X_1,X_2,\ldots,X_N$ are all independent given $(\bY,\lam, \bm{\theta}, \bm{\beta})$ under both $P, Q \in \mathcal{P}.$ 
+\item This implies that  $D_{X_1, X_2, \ldots, X_N} (P \| Q) = \sum_i D_{X_i}(P \| Q).$
+\end{itemize} 
+
+We provide two theorems under recent record linkage model, finally providing a general theorem. 
+
+Finally, we illustrate how the bounds hold on simulated data. 
+ 
+ \setcounter{section}{1}
+\begin{theorem}
+\label{theorem:cat}
+This result finds an upper bound on the KL divergence and a
+ lower bound for the  probability that the categorical model in \cite{steorts14smered} gets the linkage structure incorrect. 
+Let
+$$\gamma = \max_{\Lambda_{ij} \neq \Lambda'_{ij}}
+2\sum_{ij\ell} I(Y_{\Lambda_{ij}\ell} \neq Y_{\Lambda'_{ij}\ell}) (1-\beta_{\ell}) \ln \left \{
+\dfrac{1}{
+\min_m \theta_{\ell m} \beta_{\ell}} \right\}.$$
+%
+ \begin{enumerate}
+\item[i)] The KL divergence is bounded above by $\gamma.$ That is,
+$D_X(P || Q) \leq \gamma \enskip \forall P, Q \in \mathcal{P}$.
+\item[ii)] The minimum probability of getting a latent entity wrong is
+$Pr( {\Lambda}_{ij} \ne \Lambda^\prime_{ij}) \geq 1 - \dfrac{ \gamma + \ln 2}{\ln r}, \enskip \forall i,j$
+\end{enumerate}
+\end{theorem}
+That is, as the latent entities become more distinct, $\gamma$ increases. On the other hand, as the latent entities become more similar, $\gamma \rightarrow 0.$ \\
+\textbf{Remark}:
+Consider Theorem \ref{theorem:cat} (i). Suppose $\beta_{\ell} \rightarrow 1.$ Then $D_{\bX} \geq 0.$ If instead $\beta_{\ell} \rightarrow 0,$ then $D_{\bX} \geq 1.$ The lower bound is only informative when $\beta_{\ell} \rightarrow 0.$ We have more information when the latent entities are separated.
+
+
+\begin{theorem}
+\label{theorem:string}
+Assume string and categorical data $\bX$ as in \cite{steorts15entity} and distributions $P,Q \in \mathcal{P}$.  Assume two distinct linkage structures, denoted by $Y_{\Lambda_{ij}\ell}, Y_{\Lambda^\prime_{ij}\ell}.$
+\begin{enumerate}
+\item [i)] There is an upper bound on the KL divergence between any $P,Q \in \mathcal{P}$ 
+given by $\kappa,$ that is $D_X(P||Q) \leq \kappa.$
+%\begin{align}
+%&D_{\bX}(P || Q)\\
+% &\geq
+%\sum_{i,j,\ell} 2(1 - \beta_\ell) \\
+%& + \sum_{i,j,\ell}
+%I(Y_{\Lambda_{ij}\ell} \neq Y_{\Lambda^\prime_{ij}\ell})
+%\left(
+%1 - e^{-c d(Y_{\Lambda_{ij}\ell}, Y_{\Lambda^\prime_{ij}\ell})}
+%\right) E[ e^{-c  d(m, Y_{\Lambda_{ij}\ell})} ],
+%\end{align}
+\item [ii)] $Pr(\Lambda_{ij} \neq \Lambda^\prime_{ij}) \geq 1- \dfrac{\kappa + \ln 2}{\ln r},$
+where 
+\begin{align*}
+\kappa &= \max_{\Lambda_{ij} \neq \Lambda^\prime_{ij}}\bigg[
+2 \sum_{\ell} (1-\beta_\ell) I(Y_{\Lambda_{ij}\ell} \neq Y_{\Lambda^\prime_{ij}\ell}) 
+  +  \\
+& \qquad \sum_{\ell m}  I(Y_{\Lambda_{ij}\ell} \neq Y_{\Lambda^\prime_{ij}\ell}) 
+ \left(
+1 - e^{-c d(Y_{\Lambda_{ij}\ell}, Y_{\Lambda^\prime_{ij}\ell})}
+\right) \\
+&\times E[ e^{-c  d(m, Y_{\Lambda_{ij}\ell})} ] \bigg]\ln\{ (\min Q)^{-1} \}
+\end{align*}
+and $r+1$ is the cardinality of $\mathcal{P}$.
+% where the expectation is taken according to 
+%random variable $M \sim \alpha_\ell.$ That is, $\sum_m  \alpha_\ell (m)
+%e^{-c  d(m, m^\prime)} $ is the moment generating function of $d(M,m^\prime)$ (evaluated at c).
+\end{enumerate}
+\end{theorem}
+
+\vspace{.75cm}
+\begin{center}
+  \pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,
+    gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+    \begin{center}
+      {\large \bf Other Priors on the Linkage Structure}
+    \end{center}
+  }
+\end{center}
+\vspace{.65cm}
+\begin{itemize}
+\item Above we a specific discrete uniform prior on $\lam$.  
+\item We extend this to include other discrete uniform priors on $\lam$ including those that are informative. 
+\item Special cases include the work of \cite{zanella2016microclustering, liseo_2011, sadinle_2014, pitman}. 
+\item The theorem on performance bounds generalizes naturally, allowing comparisons to be made in future work. 
+\end{itemize}
+
+\vspace{.75cm}
+\begin{center}
+  \pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,
+    gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+    \begin{center}
+      {\large \bf Experiments}
+    \end{center}
+  }
+\end{center}
+\vspace{.65cm}
+
+In our experiments (\textbf{Experiment I} and \textbf{Experiment II}), synthetic categorical data are generated according to the 
+Steorts, Hall Fienberg (2014, 2016) or Steorts (2015)  using the parameters in Figures 2 and 3.
+\vspace*{1em} 
+
+\begin{itemize}
+\item In order to consider a realistic set of strings for $S$, we consider the set of 20 most popular female baby names from 2014, according to the United States Census. Then for the distance $d$, we consider the generalized Levenshtein edit distance.
+\item For each experiment, we vary exactly one of the parameters to demonstrate its impact of the linkage error rate $Pr( (\hat{\Lambda}_{ij}, \bY) \ne (\Lambda_{ij}, \bY))$. 
+\item We choose the other values such that the performance is neither extremely low nor extremely high. We set the distortion parameter $\beta_\ell$ to the same value for each $\ell$, i.e.\ $\beta_\ell = 0.6$ denotes a distortion probability of 0.6 for every field. $\beta_\ell = $ 0.0 to 1.0 means we started with $\beta_\ell = 0$ for all $\ell$ and swept the values until $\beta_\ell = 1$ for all $\ell$. \item Recall $p$ is the number of fields, and thus the maximum value of $\ell$. 
+\item We also set each $\theta_{\ell m}$ to the same value, i.e.\ $\theta_{\ell m} = 0.1$ denotes $\theta_{\ell m} = 0.1$ for all $\ell$ and all $m$. This further implies each field $\ell$ takes on exactly $M_\ell = 1/\theta_{\ell m}$ values in order for $\theta_\ell$ to be a valid probability distribution.
+\end{itemize}
+
+\vspace*{1em} 
+
+\begin{center}
+  \begin{tabular}{ l c c c c}
+    Experiment & $N$ & $\beta_\ell $ & $p = p_c$  & $\theta_{\ell m}$ \\ \hline
+    Fig. 1(a) & 10 to 500 & 0.6 & 3 & 0.1 \\
+    Fig. 1(b) & 100  & 0 to 1 & 3 & 0.1 \\
+    Fig. 1(c) & 100  & 0.6 & 1 to 8& 0.25 \\
+    Fig. 1(d) & 100  & 0.8  & 5& $\frac{1}{46} \text{ to } 1$
+  \end{tabular}
+  \mycaption{Categorical Experiments}
+  \label{table:params}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{ l c c c c c}
+    Experiment & $N$ & $\beta_\ell $ & $p = p_s$ & $c$ \\ \hline
+    Fig. 2(a) & 100 to 500 & 0.6  & 1 &  1.0 \\
+    Fig. 2(b) & 100  & 0.2 to 1 & 1  & 1.0 \\
+    Fig. 2(c) & 100  & 0.6 & 1 to 10  & 1.0 \\
+    Fig. 2(d) & 100  & 0.6 & 1 & 0 to 2
+  \end{tabular}
+  \mycaption{String Experiments}
+  \label{table:params-str}
+\end{center}
+
+
+
+
+
+\vspace{.25cm}\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,
+fillstyle=gradient,gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}
+{\begin{center}{\large \bf Comparisons}\end{center}}\end{center}\vspace{.3cm}
+\vspace*{1em}
+
+%\begin{center}
+%\textbf{The Data}
+%\end{center}
+%We assess how well each model ``fits" on based on three real data sets (official statistics data, medical data, and the Syrian conflict).
+\begin{itemize}
+\item Exact sampler: samples directly from $Pr(\lam | X, \bY, \bz)$
+\item Gibbs sampler: empirically motivated priors proposed by \cite{steorts15entity}. 
+In order to compute the empirical probability $Pr( \hat{\Lambda}_{ij} \ne \Lambda_{ij})$, we hold $\bY$ fixed during Gibbs sampling to ensure errors in $\hat \lam$ are not due to arbitrary changes in the ordering of the labels of $\bY$. \end{itemize}
+%\vspace*{1em}
+%
+%\begin{center}
+%\textbf{Results}
+%\end{center}
+
+\textbf{Results of Experiment I and II}
+\begin{itemize}
+\item Not surprisingly, the bounds are not tight for the categorical model (Figure 4). 
+
+\item However, we categorical data and string data are both used, the bounds are tight (Figure 5). 
+
+\item The effects of parameter variation is less noticeable in the string experiments due to the fact that linking string fields is easier than ones that have been anonymized, i.e., categorical fields. 
+
+\end{itemize}
+
+%In Figure 2 we vary the number of records $N$, distortion parameter $\beta$, number of fields $p$ and number of values each field takes $M_\ell$, respectively. The empirical results demonstrate Theorem \ref{theorem:cat} captures the dependence between the error rate and the all relevant latent parameters $\theta$, $N$ and $\beta$. Specifically, linking records becomes more difficult as $N$ increases, the distortion parameter $\beta$ increases, the number of fields $p$ decreases or the number of values each field can take $M_\ell$ decreases. The bound nicely captures the logarithmic increase in error with respect to $N$ in Figure \ref{fig:experiments} (a), which gives hope for linking records in very large databases. Other terms appear to be $\bar O(n)$ when not near extreme error values, implying low noise and a larger feature space are essential to performing high quality record linkage.
+
+\begin{center}
+\includegraphics[width=0.3\textwidth]{figures/e1} \label{fig:cat}
+\mycaption{Theorem 1 (gold squares) holds on simulated
+    categorical records compared to exact sampling (grey circles) and Gibbs sampler (blue diamonds).}
+\end{center}
+
+%\textbf{Results of Experiment II}
+%Figures \ref{fig:experiments-eb} (a)-(d) show Theorem \ref{theorem:string} is tight to the true performances on string data when varying $N$, $\beta$, number of string fields $p_s$ and $c$, respectively. As expected, and similarly to the categorical results, linking records becomes more difficult as $N$ increases, the distortion parameter $\beta$ increases and the parameter $c$ decreases. The effects of parameter variation is less noticeable in the string experiments due to the fact that linking string fields is easier than ones that have been anonymized, i.e., categorical fields. 
+
+\begin{center}
+\includegraphics[width=0.3\textwidth]{figures/e2} \label{fig:str}
+\mycaption{Theorem 2 (gold squares) holds on simulated
+    noisy string records  compared to exact sampling (grey circles) and Gibbs sampler (blue diamonds).}
+\end{center}
+
+
+
+\vspace{.25cm}\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.1,linecolor=lightblue,
+fillstyle=gradient,gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}
+{\begin{center}{\large \bf Discussion}\end{center}}\end{center}\vspace{.3cm}
+\vspace*{1em}
+
+\begin{itemize}
+\item Is it possible to prove tighter bounds?
+\item Is it possible to compare to models outside of Gibbs partition prior models? 
+\item Can we avoid the label switching issue to make the performance bounds practical for real data?
+\end{itemize}
+
+\textbf{Acknowledgements}: This work was supported in
+part by NSF CAREER Award SES-1652431 and SES-1534412.
+
+
+%\vspace*{-3em}
+%\tiny{
+\scriptsize{
+\bibliographystyle{ims}
+\bibliography{references}
+}
+\phantom{.}
+\end{multicols}
+
+
+
+\end{poster}
+
+\end{document}
+
+% \includegraphics{plots/band1.eps}
+%      \includegraphics{plots/band2.eps}
+%      \includegraphics{plots/band3.eps}\\
+%      \includegraphics{plots/band4.eps}
+%      \includegraphics{plots/band5.eps}
+%      \includegraphics{plots/band6.eps}\\
+%      \includegraphics{plots/band7.eps}
+%      \includegraphics{plots/band8.eps}\\
+%      \includegraphics{plots/legend1.eps}
+%      \mycaption{Medians (smooth lines) and $95\%$ probability bands (shaded regions around the medians) of the posterior distributions of the main effects of the LCM at 8 different MODIS bands.}
+      
+
+

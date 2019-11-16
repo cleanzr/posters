@@ -1,0 +1,46 @@
+\begin{thebibliography}{6}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Pitman(2006)}]{pitman}
+\textsc{Pitman, J.} (2006).
+\newblock \textit{Combinatorial Stochastic Processes: Ecole D'Et{\'e} de
+  Probabilit{\'e}s de Saint-Flour XXXII-2002}.
+\newblock Springer.
+
+\bibitem[{Sadinle(2014)}]{sadinle_2014}
+\textsc{Sadinle, M.} (2014).
+\newblock Detecting duplicates in a homicide registry using a {B}ayesian
+  partitioning approach.
+\newblock \textit{The Annals of Applied Statistics}, \textbf{8} 2404--2434.
+
+\bibitem[{Steorts(2015)}]{steorts15entity}
+\textsc{Steorts, R.~C.} (2015).
+\newblock Entity resolution with empirically motivated priors.
+\newblock \textit{Bayesian Analysis}, \textbf{10} 849--875.
+
+\bibitem[{Steorts et~al.(2014)Steorts, Hall and Fienberg}]{steorts14smered}
+\textsc{Steorts, R.~C.}, \textsc{Hall, R.} and \textsc{Fienberg, S.~E.} (2014).
+\newblock {SMERED}: A {B}ayesian approach to graphical record linkage and
+  de-duplication.
+\newblock \textit{Journal of Machine Learning Research}, \textbf{33} 922--930.
+
+\bibitem[{Tancredi and Liseo(2011)}]{liseo_2011}
+\textsc{Tancredi, A.} and \textsc{Liseo, B.} (2011).
+\newblock A hierarchical {B}ayesian approach to record linkage and population
+  size problems.
+\newblock \textit{Annals of Applied Statistics}, \textbf{5} 1553--1585.
+
+\bibitem[{Zanella et~al.(2016)Zanella, Betancourt, Miller, Wallach, Zaidi and
+  Steorts}]{zanella2016microclustering}
+\textsc{Zanella, G.}, \textsc{Betancourt, B.}, \textsc{Miller, J.~W.},
+  \textsc{Wallach, H.}, \textsc{Zaidi, A.} and \textsc{Steorts, R.} (2016).
+\newblock Flexible models for microclustering with application to entity
+  resolution.
+\newblock In \textit{Advances in Neural Information Processing Systems}.
+  1417--1425.
+
+\end{thebibliography}
